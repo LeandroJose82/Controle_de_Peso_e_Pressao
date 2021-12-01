@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormularioNovoPeso">
+    tools:context=".activities.FormularioNovoPeso">
 
     <EditText
         android:id="@+id/entradaNovoPeso"
@@ -13,16 +13,17 @@
         android:ems="10"
         android:hint="@string/exemplo_peso"
         android:importantForAutofill="no"
-        android:inputType="number"
+        android:inputType="numberDecimal"
+        android:maxLength="5"
         android:textAlignment="center"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-          />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
@@ -55,4 +56,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/retornarHome"
         app:layout_constraintTop_toBottomOf="@id/entradaNovoPeso" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
