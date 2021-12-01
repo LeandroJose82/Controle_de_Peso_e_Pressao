@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Controle de Peso e Pressão</string>
+    <string name="peso">Peso</string>
+    <string name="exemplo_peso">110Kg</string>
+    <string name="exemplo_pressao">120/80</string>
+    <string name="pressao">Pressão</string>
+    <string name="novo">Novo</string>
+    <string name="labelFormularioPeso">Adicione novo Peso</string>
+    <string name="home">Home</string>
+    <string name="salvar">Salvar</string>
+</resources>
