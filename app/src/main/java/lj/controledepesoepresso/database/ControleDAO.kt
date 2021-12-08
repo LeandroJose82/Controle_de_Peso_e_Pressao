@@ -3,7 +3,7 @@ package lj.controledepesoepresso.database
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.Room
+import androidx.room.Query
 import lj.controledepesoepresso.models.Peso
 
 @Dao
@@ -15,7 +15,7 @@ interface ControleDAO {
         @Delete
         fun deletarPeso (peso: Peso)
 
-        //Query para selecionar o registro mais recente de peso
-//        @Query("SELECT peso FROM controle-database WHERE MAX(date) ")
-//        fun pesoMaisRecente ()
+        //Selecionar o registro mais recente de peso
+        @Query("SELECT peso FROM tabela_peso WHERE date= (select MAX(date) from tabela_peso ) ")
+        fun pesoMaisRecente():Double
 }
