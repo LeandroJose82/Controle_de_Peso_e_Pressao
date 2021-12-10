@@ -10,12 +10,12 @@ import lj.controledepesoepresso.models.Peso
 interface ControleDAO {
 
         @Insert
-        fun inserirPeso (peso: Peso)
+        suspend fun inserirPeso (peso: Peso)
 
         @Delete
-        fun deletarPeso (peso: Peso)
+        suspend fun deletarPeso (peso: Peso)
 
         //Selecionar o registro mais recente de peso
         @Query("SELECT peso FROM tabela_peso WHERE date= (select MAX(date) from tabela_peso ) ")
-        fun pesoMaisRecente():Double
+        suspend fun pesoMaisRecente():Double
 }

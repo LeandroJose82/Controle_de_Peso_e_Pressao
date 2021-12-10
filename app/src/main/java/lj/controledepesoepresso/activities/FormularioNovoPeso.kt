@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
+import kotlinx.coroutines.runBlocking
 import lj.controledepesoepresso.R
 import lj.controledepesoepresso.database.ControleDatabase
 import lj.controledepesoepresso.models.Peso
@@ -20,20 +20,17 @@ class FormularioNovoPeso : AppCompatActivity() {
         val btnSalvarNovoPeso : Button = findViewById(R.id.salvarNovoPeso)
         val txtEntradaNovoPeso : TextView = findViewById(R.id.entradaNovoPeso)
 
-        val db =   Room.databaseBuilder(
-            this,
-            ControleDatabase::class.java,
-            "controle-database"
-        ).allowMainThreadQueries().build()
-
+        val db =   ControleDatabase.getDatabase(this)
 
         btnSalvarNovoPeso.setOnClickListener {
            val verificarPeso =  txtEntradaNovoPeso.text
             if (verificarPeso==null || verificarPeso.isEmpty()){
                     Toast.makeText(this,R.string.insiraPeso,Toast.LENGTH_SHORT).show()
             }else{
-                val novoPeso = Peso(peso=txtEntradaNovoPeso.text.toString().toDouble())
-                db.controleDAO().inserirPeso(novoPeso)
+                runBlocking {
+                    val novoPeso = Peso(peso=txtEntradaNovoPeso.text.toString().toDouble())
+                    db.controleDAO().inserirPeso(novoPeso)
+                }
                 retornarHome()
             }
 
