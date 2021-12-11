@@ -7,19 +7,33 @@
     android:background="@color/fundo"
     tools:context=".activities.MainActivity">
 
-    <Button
-        android:id="@+id/btn_estatisticasPeso"
-        android:layout_width="wrap_content"
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/sliderPeso"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/estatisticas"
-        tools:ignore="DuplicateSpeakableTextCheck,MissingConstraints" />
+        android:stepSize="0.05"
+        android:valueTo="200"
+        app:trackHeight="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/salvarNovoPeso"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
 
     <Button
-        android:id="@+id/btn_registrosPeso"
+        android:id="@+id/salvarNovoPeso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/registros"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        android:layout_marginTop="16dp"
+        android:text="@string/salvar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tituloPeso"
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:layout_constraintTop_toBottomOf="@id/sliderPeso" />
 
     <TextView
         android:id="@+id/tituloPeso"
@@ -31,6 +45,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/pesoTelaPrincipal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/salvarNovoPeso"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -41,11 +56,12 @@
         android:layout_height="wrap_content"
         android:text="@string/exemplo_peso"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@id/flowPesoTelaPrincipal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-         />
+        app:layout_constraintTop_toBottomOf="@id/tituloPeso"
+        app:layout_constraintBottom_toTopOf="@id/guiaCentral"
+       />
 
     <TextView
         android:id="@+id/tituloPressaoTelaPrincipal"
@@ -87,14 +103,6 @@
 
 
     <Button
-        android:id="@+id/btn_AdicionarNovoPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/novo"
-        tools:ignore="DuplicateSpeakableTextCheck,MissingConstraints" />
-
-
-    <Button
         android:id="@+id/btnNovaPressao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -123,24 +131,10 @@
         app:constraint_referenced_ids="btnNovaPressao ,btn_estatisticasPressao ,btn_registrosPressao"
         app:flow_horizontalGap="16dp"
         app:flow_wrapMode="aligned"
-        app:layout_constraintTop_toBottomOf="@id/pressaoTelaPrincipal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flowPesoTelaPrincipal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:constraint_referenced_ids="btn_AdicionarNovoPeso ,btn_estatisticasPeso ,btn_registrosPeso"
-        app:flow_horizontalGap="16dp"
-        app:flow_wrapMode="aligned"
-        app:layout_constraintBottom_toTopOf="@id/guiaCentral"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/pressaoTelaPrincipal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
