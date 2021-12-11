@@ -12,9 +12,6 @@
         android:theme="@style/Theme.ControleDePesoEPressão"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".activities.FormularioNovoPeso"
-            android:exported="true" />
-        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>

@@ -8,7 +8,7 @@ import lj.controledepesoepresso.models.Peso
 
 @Database(entities = [Peso::class], version = 1, exportSchema = false)
 abstract class ControleDatabase : RoomDatabase() {
-    abstract fun controleDAO(): ControleDAO
+    abstract fun controleDAO(): PesoDAO
 
 
     companion object {

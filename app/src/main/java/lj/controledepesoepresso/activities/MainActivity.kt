@@ -23,15 +23,12 @@ class MainActivity : AppCompatActivity() {
 
         exibirPesoMaisRecente(db, textoPesoAtual)
 
-//        sliderPeso.addOnChangeListener { slider, value, fromUser ->
-//            // Responds to when slider's value is changed
-//            textoPesoAtual.text = "${sliderPeso.value} KG"
-//        }
-
         btnSalvarNovoPeso.setOnClickListener {
             salvarPeso(sliderPeso, db)
             exibirPesoMaisRecente(db, textoPesoAtual)
         }
+
+
 
     }
 
@@ -40,12 +37,13 @@ class MainActivity : AppCompatActivity() {
         db: ControleDatabase
     ) {
         val verificarPeso = sliderPeso.value.toString()
-        if (verificarPeso.isEmpty()) {
+        if (verificarPeso.isEmpty() || sliderPeso.value.toDouble() == 0.0) {
             Toast.makeText(this, R.string.insiraPeso, Toast.LENGTH_SHORT).show()
         } else {
             runBlocking {
                 val novoPeso = Peso(peso = verificarPeso.toDouble())
                 db.controleDAO().inserirPeso(novoPeso)
+                Toast.makeText(applicationContext,getString(R.string.InfoPesoSalvo),Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     ) {
         runBlocking {
             val pesoRecente: String = db.controleDAO().pesoMaisRecente().toString()
-            textoPesoAtual.text = "$pesoRecente KG"
+            textoPesoAtual.text = getString(R.string.pesoRecente,pesoRecente)
         }
     }
 

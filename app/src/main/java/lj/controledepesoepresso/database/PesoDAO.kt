@@ -7,7 +7,7 @@ import androidx.room.Query
 import lj.controledepesoepresso.models.Peso
 
 @Dao
-interface ControleDAO {
+interface PesoDAO {
 
         @Insert
         suspend fun inserirPeso (peso: Peso)
