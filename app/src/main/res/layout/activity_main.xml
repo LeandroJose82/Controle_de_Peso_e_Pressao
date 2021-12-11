@@ -4,12 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fundo"
     tools:context=".activities.MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/btn_estatisticasPeso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:text="@string/estatisticas"
+        tools:ignore="DuplicateSpeakableTextCheck,MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_registrosPeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registros"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/tituloPeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/peso"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -17,32 +33,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        />
 
     <TextView
         android:id="@+id/pesoTelaPrincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:text="@string/exemplo_peso"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/guiaCentral"
+        app:layout_constraintBottom_toTopOf="@id/flowPesoTelaPrincipal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+         />
 
     <TextView
         android:id="@+id/tituloPressaoTelaPrincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/pressao"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/pressaoTelaPrincipal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guiaCentral"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -51,12 +66,12 @@
         android:id="@+id/pressaoTelaPrincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="@string/exemplo_pressao"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tituloPressaoTelaPrincipal" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloPressaoTelaPrincipal" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -70,27 +85,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/btn_AdicionarNovoPeso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:text="@string/novo"
-        app:layout_constraintBottom_toBottomOf="@+id/pesoTelaPrincipal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pesoTelaPrincipal"
-        app:layout_constraintTop_toTopOf="@+id/pesoTelaPrincipal"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        tools:ignore="DuplicateSpeakableTextCheck,MissingConstraints" />
+
 
     <Button
+        android:id="@+id/btnNovaPressao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:text="@string/novo"
-        app:layout_constraintBottom_toBottomOf="@+id/pressaoTelaPrincipal"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_estatisticasPressao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/estatisticas"
+        tools:ignore="DuplicateSpeakableTextCheck,MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_registrosPressao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registros"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flowPressaoTelaPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btnNovaPressao ,btn_estatisticasPressao ,btn_registrosPressao"
+        app:flow_horizontalGap="16dp"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintTop_toBottomOf="@id/pressaoTelaPrincipal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pressaoTelaPrincipal"
-        app:layout_constraintTop_toTopOf="@+id/pressaoTelaPrincipal" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flowPesoTelaPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:constraint_referenced_ids="btn_AdicionarNovoPeso ,btn_estatisticasPeso ,btn_registrosPeso"
+        app:flow_horizontalGap="16dp"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintBottom_toTopOf="@id/guiaCentral"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
