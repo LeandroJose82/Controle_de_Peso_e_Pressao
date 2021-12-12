@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fundo"
     tools:context=".activities.MainActivity">
 
 
@@ -60,13 +59,12 @@
         android:id="@+id/tituloPressaoTelaPrincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/pressao"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/pressaoTelaPrincipal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guiaCentral"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -128,7 +126,29 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintGuide_end="16dp"
+        />
 
-       />
+    <NumberPicker
+        android:id="@+id/pickerPressaoSistolica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/pressaoTelaPrincipal"
+        app:layout_constraintTop_toBottomOf="@+id/pressaoTelaPrincipal" />
+    <NumberPicker
+        android:id="@+id/pickerPressaoDiastolica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/pickerPressaoSistolica"
+        app:layout_constraintTop_toBottomOf="@+id/pressaoTelaPrincipal" />
+
+    <Button
+        android:id="@+id/btnSalvarPressao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/salvar"
+        app:layout_constraintTop_toBottomOf="@id/pickerPressaoDiastolica"
+        app:layout_constraintStart_toStartOf="@id/pickerPressaoDiastolica"
+        app:layout_constraintEnd_toEndOf="@id/pickerPressaoSistolica"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package lj.controledepesoepresso.activities
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.NumberPicker
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import kotlinx.coroutines.runBlocking
 import lj.controledepesoepresso.R
 import lj.controledepesoepresso.database.ControleDatabase
 import lj.controledepesoepresso.models.Peso
+import lj.controledepesoepresso.models.Pressao
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,19 +19,72 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val textoPesoAtual : TextView = findViewById((R.id.pesoTelaPrincipal))
+        val textoPressaoAtual : TextView = findViewById(R.id.pressaoTelaPrincipal)
         val sliderPeso : Slider = findViewById(R.id.sliderPeso)
-        val btnSalvarNovoPeso : Button = findViewById(R.id.salvarNovoPeso)
+        val btnSalvarPeso : Button = findViewById(R.id.salvarNovoPeso)
+        val btnSalvarPressao : Button = findViewById(R.id.btnSalvarPressao)
         val db =   ControleDatabase.getDatabase(this)
+        val pickerPressaoSistolica : NumberPicker = findViewById(R.id.pickerPressaoSistolica)
+        val pickerPressaoDiastolica : NumberPicker = findViewById(R.id.pickerPressaoDiastolica)
 
-        exibirPesoMaisRecente(db, textoPesoAtual)
 
-        btnSalvarNovoPeso.setOnClickListener {
+        configuracaoNumberPickerPressao(pickerPressaoSistolica, pickerPressaoDiastolica)
+
+        exibirPeso(db, textoPesoAtual)
+        exibirPressao(db, textoPressaoAtual)
+
+        btnSalvarPeso.setOnClickListener {
             salvarPeso(sliderPeso, db)
-            exibirPesoMaisRecente(db, textoPesoAtual)
+            exibirPeso(db, textoPesoAtual)
         }
 
+        btnSalvarPressao.setOnClickListener {
+            salvarPressao(pickerPressaoSistolica,pickerPressaoDiastolica,db)
+            exibirPressao(db, textoPressaoAtual)
+        }
+
+    }
+
+    private fun exibirPressao(
+        db: ControleDatabase,
+        textoPressaoAtual: TextView
+    ) {
+        runBlocking {
+            val pressaoSistolicaRecente: String =
+                db.pressaoDAO().pressaoSistolicaMaisRecente().toString()
+            val pressaoDiastolicaRecente: String =
+                db.pressaoDAO().pressaoDiastolicaMaisRecente().toString()
+
+            textoPressaoAtual.text = getString(
+                R.string.pressaoRecente,
+                pressaoSistolicaRecente,
+                pressaoDiastolicaRecente
+            )
+        }
+    }
 
 
+    private fun exibirPeso(
+        db: ControleDatabase,
+        textoPesoAtual: TextView
+    ) {
+        runBlocking {
+            val pesoRecente: String = db.pesoDAO().pesoMaisRecente().toString()
+            textoPesoAtual.text = getString(R.string.pesoRecente, pesoRecente)
+        }
+    }
+
+
+    private fun configuracaoNumberPickerPressao(
+        pickerPressaoSistolica: NumberPicker,
+        pickerPressaoDiastolica: NumberPicker
+    ) {
+        pickerPressaoSistolica.minValue = 0
+        pickerPressaoSistolica.maxValue = 300
+        pickerPressaoSistolica.value = 120
+        pickerPressaoDiastolica.minValue = 0
+        pickerPressaoDiastolica.maxValue = 300
+        pickerPressaoDiastolica.value = 80
     }
 
     private fun salvarPeso(
@@ -42,21 +97,30 @@ class MainActivity : AppCompatActivity() {
         } else {
             runBlocking {
                 val novoPeso = Peso(peso = verificarPeso.toDouble())
-                db.controleDAO().inserirPeso(novoPeso)
-                Toast.makeText(applicationContext,getString(R.string.InfoPesoSalvo),Toast.LENGTH_LONG).show()
+                db.pesoDAO().inserirPeso(novoPeso)
+                Toast.makeText(applicationContext,getString(R.string.InfoPesoSalvo),Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun exibirPesoMaisRecente(
-        db: ControleDatabase,
-        textoPesoAtual: TextView
+    private fun salvarPressao(
+        pickerPressaoSistolica: NumberPicker,
+        pickerPressaoDiastolica: NumberPicker,
+        db: ControleDatabase
     ) {
-        runBlocking {
-            val pesoRecente: String = db.controleDAO().pesoMaisRecente().toString()
-            textoPesoAtual.text = getString(R.string.pesoRecente,pesoRecente)
+        val novaPressaoSistolica = pickerPressaoSistolica.value
+        val novaPressaoDiastolica = pickerPressaoDiastolica.value
+
+            runBlocking {
+                val novaPressao = Pressao(pressaoSistolica = novaPressaoSistolica, pressaoDiastolica = novaPressaoDiastolica)
+                db.pressaoDAO().inserirPressao(novaPressao)
+                Toast.makeText(applicationContext,getString(R.string.InfoPressaoSalva),Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-}
+
+
+
+
 

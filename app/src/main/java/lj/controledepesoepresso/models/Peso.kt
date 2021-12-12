@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class Peso(
     @PrimaryKey(autoGenerate = true)
     val id: Int=0,
-    var peso: Double,
+    var peso: Double=0.0,
     val date: Long = System.currentTimeMillis()
         )

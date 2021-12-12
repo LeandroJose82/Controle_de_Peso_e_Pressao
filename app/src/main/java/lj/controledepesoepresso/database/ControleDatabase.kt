@@ -5,10 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import lj.controledepesoepresso.models.Peso
+import lj.controledepesoepresso.models.Pressao
 
-@Database(entities = [Peso::class], version = 1, exportSchema = false)
+@Database(entities = [Peso::class,Pressao::class], version = 1, exportSchema = false)
 abstract class ControleDatabase : RoomDatabase() {
-    abstract fun controleDAO(): PesoDAO
+    abstract fun pesoDAO(): PesoDAO
+    abstract fun pressaoDAO() : PressaoDAO
 
 
     companion object {
