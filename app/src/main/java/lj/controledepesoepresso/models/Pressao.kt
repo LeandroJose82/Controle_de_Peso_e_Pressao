@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 data class Pressao(
     @PrimaryKey (autoGenerate = true)
     val id : Int = 0,
-    var pressaoSistolica : Int,
-    var pressaoDiastolica: Int,
+    var pressaoSistolica : Int = 120,
+    var pressaoDiastolica: Int =80,
     val date: Long = System.currentTimeMillis()
 ) {
     override fun toString(): String {
