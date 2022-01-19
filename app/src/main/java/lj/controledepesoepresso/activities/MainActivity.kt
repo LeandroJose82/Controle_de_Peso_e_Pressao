@@ -7,10 +7,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.slider.Slider
 import lj.controledepesoepresso.R
-import lj.controledepesoepresso.repository.pesoRepository
-import lj.controledepesoepresso.repository.pressaoRepository
+import lj.controledepesoepresso.viewmodel.pesoViewModel
+import lj.controledepesoepresso.viewmodel.pressaoViewModel
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,34 +23,36 @@ class MainActivity : AppCompatActivity() {
         val btnSalvarPressao: Button = findViewById(R.id.btnSalvarPressao)
         val pickerPressaoSistolica: NumberPicker = findViewById(R.id.pickerPressaoSistolica)
         val pickerPressaoDiastolica: NumberPicker = findViewById(R.id.pickerPressaoDiastolica)
-        val repositoryPeso = pesoRepository(this)
-        val repositoryPressao = pressaoRepository(this)
+
+
+        val pressaoViewModel = pressaoViewModel(this)
+        val pesoViewModel = pesoViewModel(this)
 
         configuracaoNumberPickerPressao(pickerPressaoSistolica, pickerPressaoDiastolica)
 
 
-        //TODO(Passar essas posições iniciais para SharedPreferences)
-        sliderPeso.value = repositoryPeso.pesoAtual().toString().toFloat()
-        textoPesoAtual.text = getString(R.string.pesoRecente, repositoryPeso.pesoAtual().toString())
-        pickerPressaoSistolica.value = repositoryPressao.pressaoSistolicaAtual()
-        pickerPressaoDiastolica.value = repositoryPressao.pressaoDiastolicaAtual()
+        sliderPeso.value = pesoViewModel.pesoAtual().toString().toFloat()
+        textoPesoAtual.text = getString(R.string.pesoRecente,pesoViewModel.pesoAtual()
+            .toString())
+        pickerPressaoSistolica.value = pressaoViewModel.pressaoSistolicaAtual()
+        pickerPressaoDiastolica.value = pressaoViewModel.pressaoDiastolicaAtual()
         textoPressaoAtual.text = getString(
             R.string.pressaoRecente,
-            repositoryPressao.pressaoSistolicaAtual().toString(),
-            repositoryPressao.pressaoDiastolicaAtual().toString()
+            pressaoViewModel.pressaoSistolicaAtual().toString(),
+            pressaoViewModel.pressaoDiastolicaAtual().toString()
         )
 
 
         btnSalvarPeso.setOnClickListener {
             val pesoNovo = sliderPeso.value.toString()
-            repositoryPeso.salvarPeso(pesoNovo, this)
+            pesoViewModel.salvarPeso(pesoNovo)
             textoPesoAtual.text = getString(R.string.pesoRecente, pesoNovo)
         }
 
         btnSalvarPressao.setOnClickListener {
             val novaPressaoSistolica = pickerPressaoSistolica.value
             val novaPressaoDiastolica = pickerPressaoDiastolica.value
-            repositoryPressao.salvarPressao(novaPressaoSistolica, novaPressaoDiastolica)
+            pressaoViewModel.salvarPressao(novaPressaoSistolica, novaPressaoDiastolica)
             textoPressaoAtual.text = getString(
                 R.string.pressaoRecente,
                 novaPressaoSistolica.toString(),

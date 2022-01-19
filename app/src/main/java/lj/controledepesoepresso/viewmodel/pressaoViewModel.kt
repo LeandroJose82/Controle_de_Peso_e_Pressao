@@ -1,4 +1,25 @@
 package lj.controledepesoepresso.viewmodel
 
-class pressaoViewModel {
+import android.content.Context
+import androidx.lifecycle.ViewModel
+import lj.controledepesoepresso.repository.pressaoRepository
+
+class pressaoViewModel(context: Context): ViewModel() {
+
+
+    private val repository = pressaoRepository (context)
+
+
+    fun salvarPressao (pressaoDiastolica:Int,pressaoSistolica: Int) {
+        repository.salvarPressao(pressaoDiastolica,pressaoSistolica)
+    }
+
+    fun pressaoDiastolicaAtual() : Int {
+       return repository.pressaoDiastolicaAtual()
+    }
+
+    fun pressaoSistolicaAtual() :Int {
+        return repository.pressaoSistolicaAtual()
+    }
+
 }

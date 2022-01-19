@@ -10,4 +10,5 @@
     <string name="InfoPesoSalvo">Peso salvo com sucesso</string>
     <string name="pressaoRecente">%1$s/%2$s</string>
     <string name="InfoPressaoSalva">Pressao Salva com sucesso</string>
+    <string name="pesoAtual">pesoAtual</string>
 </resources>
