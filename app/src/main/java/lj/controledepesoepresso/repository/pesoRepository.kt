@@ -2,6 +2,8 @@ package lj.controledepesoepresso.repository
 
 import android.content.Context
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.runBlocking
 import lj.controledepesoepresso.R
 import lj.controledepesoepresso.database.ControleDatabase
@@ -10,6 +12,7 @@ import lj.controledepesoepresso.models.Peso
 class pesoRepository (val context: Context) {
 
     val db =   ControleDatabase.getDatabase(context)
+    private val pesoLiveData = MutableLiveData<Double>()
 
 
     fun salvarPeso(
@@ -28,10 +31,12 @@ class pesoRepository (val context: Context) {
         }
     }
 
-     fun pesoAtual() : Double {
+
+    fun pesoAtual() : LiveData<Double> {
         return runBlocking {
-             db.pesoDAO().pesoMaisRecente()
-                   }
-     }
+            pesoLiveData.value = db.pesoDAO().pesoMaisRecente()
+            pesoLiveData
+        }
+    }
 
 }

@@ -10,15 +10,14 @@ class pesoViewModel (context:Context) : ViewModel(){
 
     private val repository = pesoRepository (context)
 
-    private val pesoLiveData : LiveData <Double> = TODO()
-
-
     fun salvarPeso (peso:String) {
         repository.salvarPeso(peso,repository.context)
     }
 
-    fun pesoAtual () : Double {
+    fun pesoAtual () : LiveData<Double> {
         return repository.pesoAtual()
     }
+
+
 
 }

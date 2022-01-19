@@ -2,6 +2,8 @@ package lj.controledepesoepresso.repository
 
 import android.content.Context
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.runBlocking
 import lj.controledepesoepresso.R
 import lj.controledepesoepresso.database.ControleDatabase
@@ -10,6 +12,9 @@ import lj.controledepesoepresso.models.Pressao
 class pressaoRepository (val context: Context) {
 
     val db =   ControleDatabase.getDatabase(context)
+
+    private val pressaoSistolicaLivedata = MutableLiveData<Int>()
+    private val pressaoDiastolicaLiveData = MutableLiveData<Int>()
 
     fun salvarPressao(
         novaPressaoSistolica: Int,
@@ -23,15 +28,17 @@ class pressaoRepository (val context: Context) {
     }
 
 
-     fun pressaoSistolicaAtual() : Int {
+     fun pressaoSistolicaAtual() : LiveData<Int> {
         return  runBlocking {
-          db.pressaoDAO().pressaoSistolicaMaisRecente()
+         pressaoSistolicaLivedata.value = db.pressaoDAO().pressaoSistolicaMaisRecente()
+            pressaoSistolicaLivedata
         }
     }
 
-    fun pressaoDiastolicaAtual() : Int {
+    fun pressaoDiastolicaAtual() : LiveData<Int> {
         return  runBlocking {
-            db.pressaoDAO().pressaoDiastolicaMaisRecente()
+           pressaoDiastolicaLiveData.value = db.pressaoDAO().pressaoDiastolicaMaisRecente()
+            pressaoDiastolicaLiveData
         }
     }
 

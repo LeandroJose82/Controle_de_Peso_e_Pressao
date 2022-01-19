@@ -12,6 +12,8 @@ import lj.controledepesoepresso.viewmodel.pressaoViewModel
 
 class MainActivity : AppCompatActivity() {
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,18 +32,23 @@ class MainActivity : AppCompatActivity() {
 
         configuracaoNumberPickerPressao(pickerPressaoSistolica, pickerPressaoDiastolica)
 
+        val pesoAtual = pesoViewModel.pesoAtual().value.toString()
+        val pressaoSistolicaAtual = pressaoViewModel.pressaoSistolicaAtual().value.toString()
+        val pressaoDiastolicaAtual = pressaoViewModel.pressaoDiastolicaAtual().value.toString()
 
-        sliderPeso.value = pesoViewModel.pesoAtual().toString().toFloat()
-        textoPesoAtual.text = getString(R.string.pesoRecente,pesoViewModel.pesoAtual()
-            .toString())
-        pickerPressaoSistolica.value = pressaoViewModel.pressaoSistolicaAtual()
-        pickerPressaoDiastolica.value = pressaoViewModel.pressaoDiastolicaAtual()
+
+
+        sliderPeso.value = pesoAtual.toFloat()
+        pickerPressaoSistolica.value = pressaoSistolicaAtual.toInt()
+        pickerPressaoDiastolica.value = pressaoDiastolicaAtual.toInt()
+
+
+        textoPesoAtual.text = getString(R.string.pesoRecente, pesoAtual)
         textoPressaoAtual.text = getString(
             R.string.pressaoRecente,
-            pressaoViewModel.pressaoSistolicaAtual().toString(),
-            pressaoViewModel.pressaoDiastolicaAtual().toString()
+            pressaoSistolicaAtual,
+            pressaoDiastolicaAtual
         )
-
 
         btnSalvarPeso.setOnClickListener {
             val pesoNovo = sliderPeso.value.toString()
