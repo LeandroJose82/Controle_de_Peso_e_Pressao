@@ -9,9 +9,9 @@ import lj.controledepesoepresso.R
 import lj.controledepesoepresso.database.ControleDatabase
 import lj.controledepesoepresso.models.Pressao
 
-class pressaoRepository (val context: Context) {
+class PressaoRepository (private val context: Context) {
 
-    val db =   ControleDatabase.getDatabase(context)
+    private val db =   ControleDatabase.getDatabase(context)
 
     private val pressaoSistolicaLivedata = MutableLiveData<Int>()
     private val pressaoDiastolicaLiveData = MutableLiveData<Int>()
@@ -19,12 +19,16 @@ class pressaoRepository (val context: Context) {
     fun salvarPressao(
         novaPressaoSistolica: Int,
         novaPressaoDiastolica : Int
-    ) {
+    ) : LiveData<Boolean> {
+        val liveData = MutableLiveData<Boolean>()
+
         runBlocking {
             val novaPressao = Pressao(pressaoSistolica = novaPressaoSistolica , pressaoDiastolica = novaPressaoDiastolica)
             db.pressaoDAO().inserirPressao(novaPressao)
             Toast.makeText(context, R.string.InfoPressaoSalva, Toast.LENGTH_SHORT).show()
+            liveData.value = true
         }
+        return liveData
     }
 
 

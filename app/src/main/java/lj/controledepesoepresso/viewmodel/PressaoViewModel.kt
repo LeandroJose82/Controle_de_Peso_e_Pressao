@@ -3,15 +3,15 @@ package lj.controledepesoepresso.viewmodel
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import lj.controledepesoepresso.repository.pressaoRepository
+import lj.controledepesoepresso.repository.PressaoRepository
 
-class pressaoViewModel(context: Context): ViewModel() {
+class PressaoViewModel(context: Context): ViewModel() {
 
 
-    private val repository = pressaoRepository (context)
+    private val repository = PressaoRepository (context)
 
-    fun salvarPressao (pressaoDiastolica:Int,pressaoSistolica: Int) {
-        repository.salvarPressao(pressaoDiastolica,pressaoSistolica)
+    fun salvarPressao (pressaoDiastolica:Int,pressaoSistolica: Int) : LiveData<Boolean> {
+      return  repository.salvarPressao(pressaoDiastolica,pressaoSistolica)
     }
 
     fun pressaoDiastolicaAtual() : LiveData<Int> {

@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.slider.Slider
 import lj.controledepesoepresso.R
-import lj.controledepesoepresso.viewmodel.pesoViewModel
-import lj.controledepesoepresso.viewmodel.pressaoViewModel
+import lj.controledepesoepresso.viewmodel.PesoViewModel
+import lj.controledepesoepresso.viewmodel.PressaoViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val textoPesoAtual: TextView = findViewById((R.id.pesoTelaPrincipal))
         val textoPressaoAtual: TextView = findViewById(R.id.pressaoTelaPrincipal)
@@ -27,14 +28,15 @@ class MainActivity : AppCompatActivity() {
         val pickerPressaoDiastolica: NumberPicker = findViewById(R.id.pickerPressaoDiastolica)
 
 
-        val pressaoViewModel = pressaoViewModel(this)
-        val pesoViewModel = pesoViewModel(this)
+        val pressaoViewModel = PressaoViewModel(this)
+        val pesoViewModel = PesoViewModel(this)
 
         configuracaoNumberPickerPressao(pickerPressaoSistolica, pickerPressaoDiastolica)
 
-        val pesoAtual = pesoViewModel.pesoAtual().value.toString()
+
         val pressaoSistolicaAtual = pressaoViewModel.pressaoSistolicaAtual().value.toString()
         val pressaoDiastolicaAtual = pressaoViewModel.pressaoDiastolicaAtual().value.toString()
+        val pesoAtual = pesoViewModel.pesoAtual().value.toString()
 
 
 
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             val pesoNovo = sliderPeso.value.toString()
             pesoViewModel.salvarPeso(pesoNovo)
             textoPesoAtual.text = getString(R.string.pesoRecente, pesoNovo)
+
         }
 
         btnSalvarPressao.setOnClickListener {
