@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import lj.controledepesoepresso.repository.PesoRepository
 
 
-class PesoViewModel (context:Context) : ViewModel(){
+class PesoViewModel (context: Context) : ViewModel(){
 
     private val repository = PesoRepository (context)
 

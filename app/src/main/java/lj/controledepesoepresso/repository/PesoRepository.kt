@@ -10,7 +10,6 @@ import lj.controledepesoepresso.database.ControleDatabase
 import lj.controledepesoepresso.models.Peso
 
 class PesoRepository (val context: Context) {
-
     private val db =   ControleDatabase.getDatabase(context)
     private val pesoLiveData = MutableLiveData<Double>()
 
