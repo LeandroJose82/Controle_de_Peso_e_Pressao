@@ -11,4 +11,6 @@
     <string name="pressaoRecente">%1$s/%2$s</string>
     <string name="InfoPressaoSalva">Pressao Salva com sucesso</string>
     <string name="pesoAtual">pesoAtual</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

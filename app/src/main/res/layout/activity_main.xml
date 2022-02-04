@@ -2,157 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainActivityContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity"
     >
 
-
-    <com.google.android.material.slider.Slider
-        android:id="@+id/sliderPeso"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmento"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:stepSize="0.05"
-        android:valueTo="200"
-        app:layout_constraintBottom_toTopOf="@id/salvarNovoPeso"
-        app:layout_constraintEnd_toEndOf="@+id/guiaDireita"
-        app:layout_constraintStart_toStartOf="@+id/guiaEsquerda"
-        app:layout_constraintTop_toBottomOf="@id/pesoTelaPrincipal"
-        app:trackHeight="5dp" />
-
-    <Button
-        android:id="@+id/salvarNovoPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/salvar"
-        app:layout_constraintBottom_toTopOf="@id/guiaCentral"
-        app:layout_constraintEnd_toEndOf="@+id/sliderPeso"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/sliderPeso"
-        app:layout_constraintTop_toBottomOf="@id/sliderPeso" />
-
-    <TextView
-        android:id="@+id/tituloPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/peso"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/pesoTelaPrincipal"
-        app:layout_constraintEnd_toEndOf="@id/guiaDireita"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@id/guiaEsquerda"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/pesoTelaPrincipal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/exemplo_peso"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@id/sliderPeso"
-        app:layout_constraintEnd_toEndOf="@+id/tituloPeso"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/tituloPeso"
-        app:layout_constraintTop_toBottomOf="@id/tituloPeso" />
-
-    <TextView
-        android:id="@+id/tituloPressaoTelaPrincipal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pressao"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/pressaoTelaPrincipal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guiaCentral"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/pressaoTelaPrincipal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/exemplo_pressao"
-        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPressaoTelaPrincipal" />
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guiaCentral"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guiaSuperior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guiaEsquerda"
-        app:layout_constraintEnd_toStartOf="@id/guiaDireita"
-        app:layout_constraintGuide_begin="16dp"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guiaEsquerda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/guiaSuperior"
-        app:layout_constraintGuide_begin="16dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guiaDireita"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="@id/guiaSuperior"
-        app:layout_constraintBottom_toBottomOf="@id/guiaInferior"
-        app:layout_constraintGuide_end="16dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guiaInferior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_end="16dp"
-        />
-
-    <NumberPicker
-        android:id="@+id/pickerPressaoSistolica"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/pressaoTelaPrincipal"
-        app:layout_constraintTop_toBottomOf="@+id/pressaoTelaPrincipal" />
-    <NumberPicker
-        android:id="@+id/pickerPressaoDiastolica"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/pickerPressaoSistolica"
-        app:layout_constraintTop_toBottomOf="@+id/pressaoTelaPrincipal" />
-
-    <Button
-        android:id="@+id/btnSalvarPressao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text= "@string/salvar"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintTop_toBottomOf="@id/pickerPressaoDiastolica"
-        app:layout_constraintStart_toStartOf="@id/pickerPressaoDiastolica"
-        app:layout_constraintEnd_toEndOf="@id/pickerPressaoSistolica"
         app:layout_constraintBottom_toTopOf="@id/bottom_Bar"
-         />
+        tools:layout="@layout/fragment_peso"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_Bar"
@@ -168,6 +33,7 @@
         app:itemTextAppearanceActive="@color/purple_200"
         app:itemActiveIndicatorStyle="@color/purple_200"
         />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
