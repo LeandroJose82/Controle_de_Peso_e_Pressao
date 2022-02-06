@@ -13,7 +13,7 @@ import lj.controledepesoepresso.viewmodel.PesoViewModel
 
 class PesoFragment : Fragment()  {
 
-    val pesoViewModel by lazy {
+    private val pesoViewModel by lazy {
         context?.let {
             PesoViewModel(it)
         }
@@ -37,8 +37,13 @@ class PesoFragment : Fragment()  {
 
         if (pesoAtual != null) {
             sliderPeso.value = pesoAtual.toFloat()
+            textoPesoAtual.text = getString(R.string.pesoRecente, pesoAtual)
+        } else {
+            textoPesoAtual.text = ""
         }
-        textoPesoAtual.text = getString(R.string.pesoRecente, pesoAtual)
+
+
+
 
         btnSalvarPeso.setOnClickListener {
             val pesoNovo = sliderPeso.value.toString()

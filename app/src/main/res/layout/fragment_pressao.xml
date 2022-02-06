@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pressao"
+        android:layout_marginTop="16dp"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +34,7 @@
         android:id="@+id/pickerPressaoSistolica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/pressaoTelaPrincipal"
+        app:layout_constraintStart_toStartOf="@+id/tituloPressaoTelaPrincipal"
         app:layout_constraintTop_toBottomOf="@+id/pressaoTelaPrincipal" />
     <NumberPicker
         android:id="@+id/pickerPressaoDiastolica"

@@ -31,7 +31,6 @@ class PressaoFragment : Fragment() {
           }
         }
 
-
         val textoPressaoAtual: TextView = view.findViewById(R.id.pressaoTelaPrincipal)
         val btnSalvarPressao: Button = view.findViewById(R.id.btnSalvarPressao)
         val pickerPressaoSistolica: NumberPicker = view.findViewById(R.id.pickerPressaoSistolica)
@@ -42,18 +41,19 @@ class PressaoFragment : Fragment() {
         val pressaoSistolicaAtual = pressaoViewModel?.pressaoSistolicaAtual()?.value.toString()
         val pressaoDiastolicaAtual = pressaoViewModel?.pressaoDiastolicaAtual()?.value.toString()
 
+//        pickerPressaoSistolica.value = pressaoSistolicaAtual.toInt()
+//        pickerPressaoDiastolica.value = pressaoDiastolicaAtual.toInt()
 
+        if (pressaoDiastolicaAtual == "null") {
+            textoPressaoAtual.text = ""
+        }else{
+            textoPressaoAtual.text = getString(
+                R.string.pressaoRecente,
+                pressaoSistolicaAtual,
+                pressaoDiastolicaAtual
+            )
+        }
 
-        pickerPressaoSistolica.value = pressaoSistolicaAtual.toInt()
-        pickerPressaoDiastolica.value = pressaoDiastolicaAtual.toInt()
-
-
-
-        textoPressaoAtual.text = getString(
-            R.string.pressaoRecente,
-            pressaoSistolicaAtual,
-            pressaoDiastolicaAtual
-        )
 
 
 
